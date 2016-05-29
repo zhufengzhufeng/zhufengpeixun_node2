@@ -38,7 +38,6 @@ http.createServer(function(req,res){
             obj.result=result;
             obj.allPage=allPage;
             obj.index=urlObj.query.page;
-
         }
         else
         {
@@ -46,7 +45,7 @@ http.createServer(function(req,res){
             obj.error="没有数据了！";
         }
         //将数据返回给客户端
-        console.log(JSON.stringify(obj));
+        //console.log(JSON.stringify(obj));
         res.end(JSON.stringify(obj));
     }
     else
