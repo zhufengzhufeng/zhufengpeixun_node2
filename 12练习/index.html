@@ -87,15 +87,14 @@
                     //循环返回数据拼接成 html
                     for(var i=0;i<obj.result.length; i++){
                         var current=obj.result[i];
-                        htmlStr+="<tr>";
+                        htmlStr+="<tr id='user_"+current.id+"'>";
                         htmlStr+="<td>"+current.name+"</td>";
                         htmlStr+=" <td>"+current.age+"</td>";
                         htmlStr+=" <td></td>";
-                        htmlStr+="<td>删除 <a href='javascript:open()'>修改</a></td>";
+                        htmlStr+="<td><a href='javascript:deleteUser("+current.id+")'>删除</a> <a href='javascript:open()'>修改</a></td>";
                         htmlStr+="</tr>";
                     }
-
-
+                    //控制上上一页是否显示
                     if(obj.index!=1){
                         pageHtml+="<li>";
                         pageHtml+="<a href='javascript:getUsers("+(Number(obj.index)-1)+",10)' aria-label='Previous'>";
@@ -103,19 +102,15 @@
                         pageHtml+="</a>";
                         pageHtml+="</li>";
                     }
-
-
-                    //<li><a href="javascript:getUsers(2,10)">3</a></li>
-                    //<li><a href="javascript:getUsers(3,10)">3</a></li>
                     //循环生产中间的页脚
+                    //<li><a href="javascript:getUsers(1,10)">1</a></li>
+                    //<li><a href="javascript:getUsers(2,10)">2</a></li>
+                    //<li><a href="javascript:getUsers(3,10)">3</a></li>
                     for(var i=1;i<=obj.allPage;i++){
                         //第一次循环
                         pageHtml+="<li><a href='javascript:getUsers("+i+",10)'>"+i+"</a></li>";
                     }
-                    //<li><a href="javascript:getUsers(1,10)">1</a></li>
-                    //<li><a href="javascript:getUsers(2,10)">2</a></li>
-                    //<li><a href="javascript:getUsers(3,10)">3</a></li>
-
+                    //控制下一页是否显示
                     if(obj.allPage!=obj.index){
                         pageHtml+="<li>";
                         pageHtml+="<a href='javascript:getUsers("+(Number(obj.index)+1)+",10)' aria-label='Next'>"
@@ -139,6 +134,26 @@
         xhr.send();
     }
     getUsers(1,10);
+
+    //删除数据
+    function deleteUser(id){
+        var xhr=new XMLHttpRequest();
+        //拼接  接口地址  将需要的数据拼接到接口中（也就是url）
+        var url="/delete?id="+id;
+        xhr.open("get",url);
+        xhr.onreadystatechange=function(){
+            if(xhr.status==200 && xhr.readyState==4){
+                var obj=JSON.parse(xhr.responseText)
+                if(obj.success=="ok"){
+                    //得到当前节点的父节点  然后移除当前节点
+                    var doc= document.getElementById("user_"+id);
+                    doc.parentNode.removeChild(doc);
+                }
+
+            }
+        }
+        xhr.send();
+    }
     function open(){
         $('#exampleModal').modal('show')
     }

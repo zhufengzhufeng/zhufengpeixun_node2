@@ -6,7 +6,6 @@ var mime =require("mime");
 
 http.createServer(function(req,res){
     var urlObj=url.parse(req.url,true);
-
     if(urlObj.pathname=="/"){
         res.setHeader("Content-Type",mime.lookup("./index.html")+";charset=uft8");
         fs.createReadStream("./index.html").pipe(res);
@@ -47,6 +46,47 @@ http.createServer(function(req,res){
         //将数据返回给客户端
         //console.log(JSON.stringify(obj));
         res.end(JSON.stringify(obj));
+    }
+    //处理删除的路由
+    else if(urlObj.pathname=="/delete"){
+        var deleteid=urlObj.query.id;
+
+        //获取数据
+        var dataStr=fs.readFileSync("./2.txt");
+        //将字符串数据转换成对象
+        var data=JSON.parse(dataStr).result;
+        //保存是否删除成功
+        var flags=false;
+        //循环 找出要删除的用户id
+        for(var i=0;i<data.length;i++){
+            var current=data[i];
+            if(deleteid==current.id){
+                data.splice(i,1);
+                flags=true;
+                break;
+            }
+        }
+        //生成一个保存数据的对象
+        var obj={};
+        obj.result=data;
+        //将删除以后的结果保存到文档中
+        //如果删除成功！ 将最新的数据保存到2.txt文本里  并客户端返回成功信息
+        //如果失败  因为数据没有变动 我们就不将数据保存到 2.txt文本里 向客户端 返回错误结果
+        if(flags){
+            fs.writeFile("./2.txt",JSON.stringify(obj),function(){
+                var result={};
+                result.success="ok";
+                result.Error="";
+                res.end(JSON.stringify(result));
+
+            })
+        }
+        else {
+            var result={};
+            result.success="no";
+            result.Error="数据删除失败！";
+            res.end(JSON.stringify(result));
+        }
     }
     else
     {
