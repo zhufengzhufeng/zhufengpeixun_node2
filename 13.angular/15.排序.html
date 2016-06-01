@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body ng-init="persons=[{name:'张三',math:30,chinese:60},{name:'王五',math:20,chinese:48},{name:'李四',math:00,chinese:70}];flag='chinese'">
+<div>
+    <input type="text" ng-model="query">
+</div>
+<table class="table-bordered table" >
+    <tr>
+        <th >序号</th>
+        <th>姓名</th>
+        <th ng-click="flag='math'">数学成绩</th>
+        <th ng-click="flag='chinese'">语文成绩</th>
+    </tr>
+    <!--orderBy 根据字符串去排序 通过reverse可以进行反转-->
+    <!--filter是过滤的作用 filter:query是查询persons里所有包含输入的内容都留下 {name:query}进一步筛选 筛选人名内包含的-->
+    <!--连续的使用过滤器 用| 在|-->
+    {{"abcdefg" | uppercase | limitTo:3}}
+    <tr ng-repeat="person in persons | orderBy:flag |filter:{name:query}">
+        <td>{{$index+1}}</td>
+        <td>{{person.name}}</td>
+        <td>{{person.math}}</td>
+        <td>{{person.chinese}}</td>
+    </tr>
+
+</table>
+
+<script src="angular.js"></script>
+</body>
+</html>
