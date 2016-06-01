@@ -9,11 +9,18 @@
 <!--<div ng-init="name='alert-danger'"></div>
 &lt;!&ndash;success info warning danger&ndash;&gt;
 <div class="alert {{name}}"  role="alert">...</div>-->
-
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="#">Profile</a></li>
-    <li role="presentation"><a href="#">Messages</a></li>
+<!--1.当行当状态状态根据active样式来控制-->
+<!--2.我们要实现点一下当前的是active样式 其他的没有active-->
+思路: 1.初始化当前的current 默认为home
+      2.点击当前的 给current赋予当前的点击值
+      3.默认angular就会给我做比较判断值，只有当前的值是true其他的都是false ，所以当前的active生效
+<ul class="nav nav-tabs" ng-init="current='home'">
+    <li ng-class="{active:'home'==current}" ng-click="current='home'">
+        <a href="#">Home</a>
+    </li>
+    <li ng-class="{active:'profile'==current}" ng-click="current='profile'">
+        <a href="#">Profile</a>
+    </li>
 </ul>
 <script src="angular.js"></script>
 </body>

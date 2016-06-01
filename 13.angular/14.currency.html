@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--通过| 用我们的货币过滤器增加效果加入$的标识-->
+<input type="text" ng-model="money">
+{{money | currency:'￡'}}
+<!--大小写过滤器-->
+{{money | uppercase}}
+{{money | lowercase}}
+<!--限制位置 限制长度-->
+{{123457689453 | limitTo:3}}
+<!--数字过滤器 限制小数点后面的位数-->
+{{100100.321 | number:2}}
+<!--用|json来格式化我们的json数据看的好看一些-->
+<pre>
+{{[{"name":123,age:456}] | json}}
+</pre>
+日期过滤器
+{{1464767950029 | date:'yyyy-MM-dd hh:mm:ss'}}
+<script src="angular.js"></script>
+</body>
+</html>
