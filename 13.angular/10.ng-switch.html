@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+信息列表
+     <!--ng-switch里边装的是变量-->
+<input type="text" ng-model="home">
+<!--<div ng-switch="home">-->
+<div ng-switch on="home">
+    <!--ng-switch-when里面装的是字符串 不是变量-->
+    <div ng-switch-when="home">选项1</div>
+    <div ng-switch-when="home2">选项2</div>
+    <div ng-switch-default>默认</div>
+</div>
+<script src="angular.js"></script>
+</body>
+</html>

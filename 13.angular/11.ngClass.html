@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .class1{
+            background: red;
+        }
+        .class2{
+            color:yellow;
+        }
+    </style>
+</head>
+<body >
+<!--1.<div class="{{flag?'none':'block'}}">123</div>-->
+<div ng-init="flag=true" ng-click="flag=!flag">显示</div>
+<div ng-init="name1=true;name=true"></div>
+
+<!--2.<div ng-class="{class1:name,class2:name1}">123</div>-->
+<!--3.<div ng-class="{true:'none',false:'block'}[flag]">content</div>-->
+<div ng-init="list = {'background':'red','color':'yellow'}"></div>
+<!--4.<div ng-style="list">999</div>-->
+<script>
+    //1)ngClass都是增加样式的名字
+    //2.ngClass的第一个用法  {true:'样式１',false:'样式2'}[根据后面的值来判断是true还是false]
+    //3.{background:name,color:name1} 当name 和name1 都为true的时候 让background 和color生效
+    //2)ng-style增加行能样式
+    //将样式的对象 绑定在div上生成行内样式
+</script>
+<script src="angular.js"></script>
+</body>
+</html>

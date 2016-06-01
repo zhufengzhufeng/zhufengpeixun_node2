@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .none{
+            display: none;
+        }
+        .block{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div ng-init="flag=true" ng-click="flag=!flag">
+    {{flag?'显示':'隐藏'}}
+</div>
+<!--当我们只有显示和隐藏两种状态的时候 可以使用我们的ng-hide或者ng-show-->
+<!--ng-hide/ng-show只是改变样式但是东西还在-->
+<!--ng-if如果不成立直接从页面删除并且不执行里面的指令-->
+<div ng-if="!flag">
+    content
+</div>
+<script src="angular.js"></script>
+</body>
+</html>

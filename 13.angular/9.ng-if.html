@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            border:1px solid red;
+        }
+        li{
+            border: 1px dashed yellow;
+            height: 20px;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+信息列表
+<div ng-init="phones=[{name:'苹果'},{name:'华为'},{name:'小米'}]">
+    <!--我们要repeat什么就写在那个html标签上-->
+    <!--phones.length 数组通过length判断到底是否存在-->
+    <!--ng-if不成立里面指令不再执行-->
+    <ul ng-if="phones.length">
+        <li ng-repeat="p in phones">
+            {{p.name}}
+        </li>
+    </ul>
+    <div ng-hide="phones.length">
+        暂无数据
+    </div>
+</div>
+<script src="angular.js"></script>
+</body>
+</html>

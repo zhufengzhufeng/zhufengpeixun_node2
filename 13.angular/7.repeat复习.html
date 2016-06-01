@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<!--$odd 奇数索引 $even 偶数索引-->
+<div ng-init="phones=[{name:['6s','8s','9s']},{name:['15寸','18寸']},{name:['6kg','10kg']}]">
+    <div ng-repeat="key in phones track by key.name" ng-init="parent=$index">
+    <div ng-repeat="k in key.name">
+        product[{{parent}}][{{$index}}]
+    </div>
+</div>
+</div>
+<script src="angular.js"></script>
+<script>
+    /*
+    * <div ng-init="phones=[{name:'手机'},{name:'家电'},{name:'冰箱'}]">
+     <div ng-repeat="key in phones">
+     {{$index+1}}<div ng-bind="key.name"></div>
+     </div>
+     </div>
+    *
+    *
+    *
+    *
+    * */
+
+
+
+</script>
+</body>
+</html>
