@@ -13,6 +13,7 @@
             line-height: 20px;
         }
     </style>
+    <link rel="stylesheet" href="angular-csp.css">
 </head>
 <body>
 信息列表
@@ -20,7 +21,7 @@
     <!--我们要repeat什么就写在那个html标签上-->
     <!--phones.length 数组通过length判断到底是否存在-->
     <!--ng-if不成立里面指令不再执行-->
-    <ul ng-if="phones.length">
+    <ul ng-cloak ng-if="phones.length">
         <li ng-repeat="p in phones">
             {{p.name}}
         </li>

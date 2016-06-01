@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div ng-controller="firstCtrl">
+    {{name}}
+</div>
+<div ng-controller="secondCtrl">
+    {{name}}
+</div>
+<script src="angular.js"></script>
+<script>
+    //一切从模块开始 通过模块创建我们的controller
+    var app = angular.module('appModule',[]);
+    //两个控制器下内容是不同的（独立作用域）
+    //名字$scope 如果压缩angular以后里面的变量可能不是$scope了，所以我不用function里面写$scope的方式
+    //通过数组的方式防止$scope被压缩
+    //在模块开始的时候给我们的rootScope添加属性
+    app.run(['$rootScope',function ($s) {
+        $s.name = 111;
+    }]);
+    app.controller('firstCtrl', ['$scope',function (a,b) {
+        a.name = 100;
+      //  b.name = 111;//b相当于rootScope
+    }]);
+    app.controller('secondCtrl', function ($scope) {
+       // $scope.name = 1000;
+    });
+    //控制器嵌套：自己家有的先去自己家找
+    //父控制不能找子控制器
+    //如果子控制器下没有 那么会往父控制器上找
+</script>
+</body>
+</html>

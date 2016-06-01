@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="angular.js"></script>
+<script>
+    //1.在引入angularJs之后就会有一个angular对象
+    var content = angular.lowercase('ABDC');
+    var content = angular.uppercase('abcd');
+    console.log(content);
+//    NaN==NaN {}=={}
+    //2.比较两个变量是否相等
+    var flag = angular.equals(0,-0);
+    console.log(flag);
+    //3.angular.extend继承
+    var obj1 = {name:1};
+    var obj2 = {age:3};
+    //相当于把obj2的属性放到了obj1里
+    angular.extend(obj1,obj2);
+    console.log(obj1);
+    //对json的操作
+    //JSON.stringify  / JSON.parse
+    //4.angular.toJson  / angular.fromJson
+    var obj = '{"name":1,"age":2}';
+    var newObj = angular.fromJson(obj);
+    console.log(newObj);
+    var obj = angular.toJson(newObj);
+    console.log(obj);
+    var obj1 = {name:1};var obj2 = {age:3};
+    //5.和extend相反 用obj1的值 覆盖掉obj2上的值
+    angular.copy(obj1,obj2);
+    console.log(obj2,obj1);
+    var person = [
+        {name:11,age:10},
+        {name:111,age:30},
+        {name:111,age:60},
+    ]
+//    var arr = [10,30,60];
+    var arr = [];
+    //6.将arr作为forEach里的this
+    angular.forEach(person, function (item) {
+        this.push(item.age);
+    }, arr);
+    console.log(arr);
+    //7.angular.bind绑定this指向
+    var obj = {name:1}
+    function fn(who){
+        console.log(this.name,who);
+    }
+    //以谁为当前this绑定给哪个函数上
+    var b =  angular.bind(obj,fn,1);
+    b();
+
+
+
+
+</script>
+</body>
+</html>

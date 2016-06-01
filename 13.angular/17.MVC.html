@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div ng-controller="firstCtrl">
+    <div ng-click="cl()">123</div>
+    {{name}}
+</div>
+<script src="angular.js"></script>
+<script>
+    //自动注入一个angular对象
+    /**
+     * 参数 模块的名字
+     * 模块的依赖如果没有为空 不能不写
+     * 配置
+     */
+    //返回一个app对象
+    var app = angular.module('appModule',[]);
+    //用模块创建我们控制器
+    /**
+     * 第一个参数是控制器的名字 第二个参数是方法
+     * 当你建立了一个控制器会注入一个$scope对象
+     * 通过controller会创建一个新的scope
+     */
+    //1.我们的controller和dom是平行的
+    app.controller('firstCtrl', function ($scope) {
+        //1.通过$scope去声明变量和方法
+        //2.声明的变量和方法属于当前controller内,在外面无法访问
+        //一定同过$scope
+        $scope.name = 100;
+        //可以在我们的scope上定义方法
+        $scope.cl = function () {
+            $scope.name++;
+        };
+    });
+</script>
+</body>
+</html>
