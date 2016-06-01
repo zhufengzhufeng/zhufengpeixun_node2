@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<div ng-init="phones=['苹果','华为','苹果']">
+    <!--p代表的是每一项 不用[0]-->
+    <!--$index就是我们每次遍历的索引，根据索引去遍历-->
+    <div ng-repeat="p in phones track by $index">
+        {{p}}
+    </div>
+</div>
+<script src="angular.js"></script>
+<script>
+
+</script>
+</body>
+</html>

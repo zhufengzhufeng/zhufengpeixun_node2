@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!--告诉angular整个页面都归angular管理-->
+<!--加上ng-app就会送给我们一个$rootScope-->
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--在我们的根作用域添加了一个属性-->
+<input type="text" ng-model="name">
+<!--表达式取出我们模型上的值-->
+<!--{{可以用作计算}}-->
+<!--表达式里放入字符串需要加"",不加双引号是scope上的值-->
+{{name?name:"jw"}}
+<script src="angular.js"></script>
+</body>
+</html>

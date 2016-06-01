@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<div ng-init="phones=[{name:['6s','7s']},{name:['note','红米']},{name:['6s','7s']}]">
+    <!--通过ng-init设置父亲的索引保证在子repeat可以使用父亲的索引-->
+    <!--<div ng-repeat="p in phones" ng-init="parent=$index">-->
+        <!--<div ng-repeat="s in p.name">-->
+            <!--[{{parent}}][{{$index}}]-->
+        <!--</div>-->
+    <!--</div>-->
+    <div ng-repeat="p in phones">
+        {{$odd}}
+    </div>
+</div>
+<script src="angular.js"></script>
+<script>
+    /*
+     $first 是否是第一个
+     $last 是否是最后一个
+     $middle 是否是中间的
+     $odd奇数行 $even是偶数行
+     */
+
+</script>
+<script>
+
+</script>
+</body>
+</html>

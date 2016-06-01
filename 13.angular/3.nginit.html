@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<!--相当于name去引用我们scope上的值引用不到默认就是空-->
+<div  data-ng-app  data-ng-init="jw=123;name=[{'sixone':'我们很开心'}]">
+    <input type="text" data-ng-model="name">
+    {{name[0].sixone}}
+</div>
+<script src="angular.js"></script>
+<script>
+    //ng-init 初始化数据 在我们的跟作用域上设置数据
+    //在我们指令中 如果不加单引号的默认是我们scope上的变量
+    //ng-init在我们ngapp范围内都可以引用到ng-init初始化的数据
+    //ng-init可以初始化数字和数组对象
+    //data- 和不加是一样的
+</script>
+</body>
+</html>

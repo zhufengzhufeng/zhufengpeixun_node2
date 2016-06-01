@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<div ng-init="phones=[{name:'苹果',age:7},{name:'小米',age:3},{name:'华为',age:10}]">
+    <!--用一个phone变量去遍历我们phones-->
+    <!--ngRepeat会创建自己独立的作用域scope-->
+    <div ng-repeat="phone in phones">
+        {{phone.name}}{{phone.age}}
+    </div>
+</div>
+<script src="angular.js"></script>
+<script>
+
+</script>
+</body>
+</html>
