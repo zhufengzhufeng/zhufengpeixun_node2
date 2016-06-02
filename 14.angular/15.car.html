@@ -34,11 +34,7 @@
 <script>
     var app = angular.module('appModule',[]);
     app.controller('carCtrl', function ($scope) {
-        $scope.books = [
-            {name:'javascript',count:1,price:30},
-            {name:'nodejs',count:1,price:50},
-            {name:'Angularjs',count:1,price:80},
-        ];
+        $scope.books = '';
         //$scope.books = [];
         //计算总价格
         $scope.total = function () {
@@ -50,13 +46,10 @@
             return sum;
         };
         $scope.z = 10;
-        //将当前要删除的书 在$scope.books里删除掉
         $scope.remove = function (cur) {
-            //cur代表当前的书
             $scope.books = $scope.books.filter(function (item) {
-                return item!=cur; //不是当前要删除的进行保留
+                return item!=cur;
             });
-            
         }
     });
 </script>
