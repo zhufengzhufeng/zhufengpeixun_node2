@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="angular-csp.css">
 </head>
 <body>
 <div ng-controller="carCtrl">
@@ -16,16 +17,16 @@
             <th>小计</th>
             <th>操作</th>
         </tr>
-        <tr ng-repeat="book in books ">
+        <tr ng-repeat="book in books " ng-if="books.length" ng-cloak>
             <td>{{$index+1}}</td>
             <td>{{book.name}}</td>
             <td>{{book.price}}</td>
             <td><input type="text" ng-model="book.count"></td>
             <td>{{book.price*book.count}}</td>
-            <td><button class="btn btn-danger">删除</button></td>
+            <td><button class="btn btn-danger" ng-click="remove(book)">删除</button></td>
         </tr>
-        <tr>
-            <td>总价{{total() | currency:'￥'}}</td>
+        <tr ng-if="books.length" ng-cloak>
+            <td colspan="6">总价{{total() | currency:'￥'}} 打折<input type="text" ng-model="z"> 折后价格{{total()*z/10}}</td>
         </tr>
     </table>
 </div>
@@ -38,6 +39,7 @@
             {name:'nodejs',count:1,price:50},
             {name:'Angularjs',count:1,price:80},
         ];
+        //$scope.books = [];
         //计算总价格
         $scope.total = function () {
             var sum = 0;
@@ -46,6 +48,15 @@
                 sum += item.price * item.count;
             });
             return sum;
+        };
+        $scope.z = 10;
+        //将当前要删除的书 在$scope.books里删除掉
+        $scope.remove = function (cur) {
+            //cur代表当前的书
+            $scope.books = $scope.books.filter(function (item) {
+                return item!=cur; //不是当前要删除的进行保留
+            });
+            
         }
     });
 </script>
