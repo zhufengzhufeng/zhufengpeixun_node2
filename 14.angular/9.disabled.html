@@ -16,15 +16,13 @@
 <script>
     //获取验证码 5秒内不再点击 并且倒计时
     var app = angular.module('appModule',[]);
-    app.controller('firstctrl', function ($scope) {
+    app.controller('firstctrl', function ($scope,$interval) {
         $scope.tmp = '点击我获取验证码';
         $scope.check = function () {
             $scope.tmp = '等待'+1+'秒数';
             $scope.flag = true;
         }
-
     });
-
 </script>
 
 </body>

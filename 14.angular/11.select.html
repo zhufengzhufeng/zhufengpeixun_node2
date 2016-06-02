@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="firstctrl">
+    <!--a.id作为value值 a.name作为可以看的到的  a 代表当前的 arr代表所有数据-->
+    <select ng-model="aa" ng-options="a.id as a.name for a in arr" ng-change="check()">
+        <option value="">请选择</option>
+    </select>
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('firstctrl', function ($scope,$timeout) {
+        $scope.arr = [
+            {"name":'人类',id:1},
+            {"name":'动物',id:2},
+            {"name":'外星人',id:3},
+            {"name":'植物类',id:4}
+        ];
+        $scope.aa = $scope.arr[0].id;
+        $scope.check = function () {
+            alert($scope.aa);
+        }
+    });
+</script>
+
+</body>
+</html>

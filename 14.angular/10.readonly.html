@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="firstctrl">
+    <!--ng-readonly仅读-->
+    <!--<input type="text" ng-model="name" ng-readonly="flag">-->
+    <!--<input type="checkbox" ng-checked="true">-->
+
+
+
+
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('firstctrl', function ($scope,$timeout) {
+        $scope.flag = false;
+        $timeout(function () {
+            $scope.flag = true;
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
