@@ -14,7 +14,7 @@
     <div ng-controller="sencondctrl">
     secondCtrl    名称 {{product.name}}
         单价 {{product.price}}
-        <input type="text" ng-model="product.count">
+        <input type="text" ng-model="product.count" ng-change="son()">
     </div>
 </div>
 <script src="angular.js"></script>
@@ -27,6 +27,9 @@
             //第二个参数是广播的内容
             $scope.$broadcast('total',$scope.total);
         };
+        $scope.$on('count',function (ev,data) {
+            $scope.total = data;
+        })
         //我们的controller不能复用，想controller之间交换，要通过事件的形式
     });
     app.controller('sencondctrl', function ($scope) {
@@ -42,6 +45,12 @@
         $scope.$on('total', function (ev,data) {
             $scope.product.count=data/$scope.product.price;
         });
+        //子控制器像父控制器发射事件
+        $scope.son = function () {
+            var total = $scope.product.price*$scope.product.count;
+            $scope.$emit('count',total);
+        };
+
     });
 
     /*
@@ -50,10 +59,15 @@
     * 子控制器如果向父控制器传递内容 要通过$emit事件
     *
     * */
-
-
-
-
 </script>
+<!--rootScope.$on
+rootScope.$broadcast
+<div ng-contoller="sibing1">
+    scope.name = 500;
+</div>
+<div ng-contoller="sibing2">
+    $on
+    scope.age = 500;
+</div>-->
 </body>
 </html>
