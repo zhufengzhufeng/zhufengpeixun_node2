@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angular-csp.css">
+</head>
+<body>
+<input type="text" ng-model="name">
+<input type="text" ng-model="age">
+<!--1.ngbind的用法和我们{{}}是一样的 解决了闪烁问题-->
+<!--<div ng-bind="name?name:'jw'"></div>-->
+<!--ng-cloak在页面中默认先隐藏，等待渲染完之后之后display:block-->
+<!--<div ng-cloak>{{name?name:"jw"}}</div>-->
+<!--不进行绑定-->
+<div ng-non-bindable>{{"你好"}}</div>
+<!--在一个div内绑定多个数据-->
+<div ng-bind-template="{{name}} {{age}}"></div>
+<!--<div ng-bind="age"></div>-->
+<script src="angular.js"></script>
+</body>
+</html>
