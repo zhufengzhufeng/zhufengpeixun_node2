@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<!--我们有一个总价格-->
+<!--我们有一个单价-->
+<!--还有一个数量-->
+<div ng-controller="firstctrl">
+    firstCtrl <input type="text" ng-model="total">
+    <div ng-controller="sencondctrl">
+    secondCtrl    名称 {{product.name}}
+        单价 {{product.price}}
+        <input type="text" ng-model="product.count">
+    </div>
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('firstctrl', function ($scope) {
+        $scope.total = 50;
+        //我们的controller不能复用，想controller之间交换，要通过事件的形式
+    });
+    app.controller('sencondctrl', function ($scope) {
+        $scope.product = {
+            name:'飞机',
+            price:'10',
+            count:5
+        }
+    });
+</script>
+</body>
+</html>

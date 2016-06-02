@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="ctrl">
+    <!--<input type="text" ng-model="name" ng-change="check()">-->
+    <!--<input type="text" ng-model="name" ng-cut="check()">-->
+    <!--<input type="text" ng-model="name" ng-paste="check()">-->
+    <input type="text" ng-model="name" ng-copy="check()">
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    //ng-change 当input框内容改变的时候触发
+    app.controller('ctrl', function ($scope) {
+        $scope.check = function () {
+            alert('你按下了 ctrl+c');
+        }
+    });
+</script>
+</body>
+</html>
