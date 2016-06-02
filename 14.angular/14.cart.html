@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="carCtrl">
+    <table class="table table-bordered">
+        <tr>
+            <th>序号</th>
+            <th>书名</th>
+            <th>价格</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>操作</th>
+        </tr>
+        <tr ng-repeat="book in books ">
+            <td>{{$index+1}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.price}}</td>
+            <td><input type="text" ng-model="book.count"></td>
+            <td>{{book.price*book.count}}</td>
+            <td><button class="btn btn-danger">删除</button></td>
+        </tr>
+        <tr>
+            <td>总价{{total() | currency:'￥'}}</td>
+        </tr>
+    </table>
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('carCtrl', function ($scope) {
+        $scope.books = [
+            {name:'javascript',count:1,price:30},
+            {name:'nodejs',count:1,price:50},
+            {name:'Angularjs',count:1,price:80},
+        ];
+        //计算总价格
+        $scope.total = function () {
+            var sum = 0;
+            angular.forEach($scope.books, function (item) {
+                //item代表每一本书 算出每一本书所用的价格进行累加
+                sum += item.price * item.count;
+            });
+            return sum;
+        }
+    });
+</script>
+</body>
+</html>
