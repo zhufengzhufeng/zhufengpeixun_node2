@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="firstCtrl" >
+    {{name}}
+</div>
+<script src="angular.js"></script>
+<script src="module.js"></script>
+
+<script>
+    //模块之间的依赖
+    //在angular中一般用一个入口 ng-app  依赖的模块必须是数组的形式
+    var app = angular.module('appModule',['app1']);
+    app.controller('firstCtrl', function ($scope,$timeout) {
+        $scope.name = 200;
+    });
+</script>
+
+</body>
+</html>

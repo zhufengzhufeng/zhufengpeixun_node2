@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div ng-controller="firstCtrl" id="div1">
+    {{name}}
+</div>
+<div ng-controller="firstCtrl" id="div2">
+    {{name}}
+</div>
+<script src="angular.js"></script>
+
+<script>
+    var app1 = angular.module('app1',[]);
+    app1.controller('firstCtrl', function ($scope) {
+        $scope.name = 100;
+    });
+    var app2 = angular.module('app2',[]);
+    app2.controller('firstCtrl', function ($scope) {
+        $scope.name = 200;
+    });
+    //手动启动ng-app 让不同的模块下，相同controller不影响
+    angular.bootstrap(div1,['app1']);
+    angular.bootstrap(div2,['app2']);
+</script>
+
+</body>
+</html>

@@ -8,8 +8,9 @@
 <body>
 <div ng-controller="firstctrl">
     <!--a.id作为value值 a.name作为可以看的到的  a 代表当前的 arr代表所有数据-->
-    <select ng-model="aa" ng-options="a.id as a.name for a in arr" ng-change="check()">
-        <option value="">请选择</option>
+
+    <select ng-model="err" ng-options="a.name as a.id for a in arr" ng-change="check()">
+        <option value="0">请选择</option>
     </select>
 </div>
 <script src="angular.js"></script>
@@ -22,10 +23,12 @@
             {"name":'外星人',id:3},
             {"name":'植物类',id:4}
         ];
-        $scope.aa = $scope.arr[0].id;
+        //当内容改变后
         $scope.check = function () {
-            alert($scope.aa);
-        }
+            //就会输出对应select的value值
+            alert($scope.err);
+
+        };
     });
 </script>
 
