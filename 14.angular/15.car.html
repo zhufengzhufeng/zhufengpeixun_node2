@@ -33,8 +33,30 @@
 <script src="angular.js"></script>
 <script>
     var app = angular.module('appModule',[]);
-    app.controller('carCtrl', function ($scope) {
-        $scope.books = '';
+    app.controller('carCtrl', function ($scope,$http) {
+       /* $http({
+            url:'/ajax',
+            method:'GET',
+            params:{name:1} //get请求可以通过params发送？号后面的内容
+        }).success(function (data) {
+            $scope.books = data;
+        });*/
+         /*$http({
+             url:'/ajax',
+             method:'POST',
+             data:{name:1} //get请求可以通过params发送？号后面的内容  data是发送请求体里的内容
+         }).success(function (data) {
+             $scope.books = data;
+         });*/
+        /*$http.get('/ajax').success(function (data) {
+            $scope.books = data;
+        });*/
+        $http.post('/ajax',{name:120}).success(function (data) {
+            $scope.books = data;
+        });
+        //1.通过$http发送的get请求?后面的参数通过params
+        //2.通过$http发送的post请求 请求体的内容要放到data里
+        //$http和$.ajax一样
         //$scope.books = [];
         //计算总价格
         $scope.total = function () {
