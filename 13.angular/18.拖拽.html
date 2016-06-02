@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top:100px;
+            left: 100px;
+        }
+        .div1{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            top:100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+<div my-drag></div>
+<div my-drag class="div1"></div>
+<script src="angular.js"></script>
+<script>
+    var app =angular.module('appModule',[]);
+    app.directive('myDrag', function () {
+       return {
+           restrict:'A',
+           link: function (scope,element,attr) {
+               //这个element是jq对象
+               element.on('mousedown', function (ev) {
+                   //当前鼠标距离盒子边缘的位置
+                 var disx = ev.pageX - element[0].offsetLeft;
+                 var disy = ev.pageY - element[0].offsetTop;
+                 //angular.element(); 将原声对象装化成angular对象
+                angular.element(document).on('mousemove', function (ev) {
+                     //当前鼠标距离页面的宽度 - 上次算出来鼠标距离盒子边缘的距离  = 盒子距离浏览器的边缘
+                     var X = ev.pageX- disx;
+                     var Y = ev.pageY- disy;
+                    //设置当前盒子的位置
+                     element.css('left',X+'px');
+                     element.css('top',Y+'px');
+                 });
+                   //当鼠标抬起的时候 关闭document的事件
+                 angular.element(document).on('mouseup', function () {
+                     angular.element(document).off();
+                 });
+               });
+           }
+       }
+    });
+</script>
+</body>
+</html>
