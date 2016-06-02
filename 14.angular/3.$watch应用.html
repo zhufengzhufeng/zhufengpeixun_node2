@@ -21,9 +21,16 @@
             free:10,
             count:1
         };
+        //scope上的一个sum方法
         $scope.sum = function () {
             return $scope.product.price*$scope.product.count;
         };
+        //不能直接使用'sum' 因为model上没有sum
+        //监听sum方法的执行
+        $scope.$watch($scope.sum, function (newVal) {
+            //判断邮费是否减免 newVal现在的总价
+            $scope.product.free = newVal>=100?0:10;
+        });
     });
 </script>
 </body>

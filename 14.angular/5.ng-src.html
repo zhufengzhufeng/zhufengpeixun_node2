@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl">
+    <img ng-src="{{bd}}" alt="">
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('ctrl', function ($scope,$timeout) {
+        //ng-src 确保图片路径已经加载完成在去请求我们的图片
+        $timeout(function () {
+            $scope.bd = 'http://docs.ngnice.com/img/AngularJS-small.png';
+        },3000)
+    });
+</script>
+</body>
+</html>
