@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="firstCtrl">
+    {{"abvd" | uppercase}}
+    {{ff}}
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    //要使用什么过滤器 就在以前的过滤器后面加Filter注入进来
+    app.controller('firstCtrl', function ($scope,uppercaseFilter,dateFilter) {
+        $scope.ff = 1232342453235;
+        //yyyy-dd hh:ss
+        //uppercaseFilter 里面装我们要格式化的数据
+        $scope.ff = uppercaseFilter($scope.ff);
+        $scope.ff = dateFilter($scope.ff,'yyyy-dd hh:ss')
+    });
+</script>
+</body>
+</html>

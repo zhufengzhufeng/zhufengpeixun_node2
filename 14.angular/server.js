@@ -21,10 +21,13 @@ http.createServer(function (req,res) {
             {name:'Angularjs',count:1,price:80},
         ];
         console.log(urlObj.query);
+        //获取post请求 获取请求体中的数据
         req.on('data', function (data) {
             console.log(11,data.toString());
         });
-        res.end(JSON.stringify(arr));
+        //angular.callbacks._0([{name:1}])
+        //为了让jsonp的方法在success中获取data数据 名字要固定
+        res.end('angular.callbacks._0([{name:1}])');
     }else{
         //bootstrap.css.map
         res.setHeader('Content-Type',mime.lookup(pathname)+';charset=utf8');

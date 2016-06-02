@@ -51,9 +51,15 @@
         /*$http.get('/ajax').success(function (data) {
             $scope.books = data;
         });*/
-        $http.post('/ajax',{name:120}).success(function (data) {
-            $scope.books = data;
+        /*$http.post('/ajax',{name:120}).success(function (data) {
+         $scope.books = data;
+         });*/
+        $http.jsonp('/ajax').success(function (data) {
+            console.log(data);
+//            $scope.books = data;
         });
+
+
         //1.通过$http发送的get请求?后面的参数通过params
         //2.通过$http发送的post请求 请求体的内容要放到data里
         //$http和$.ajax一样

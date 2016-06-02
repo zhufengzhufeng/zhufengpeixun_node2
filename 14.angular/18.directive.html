@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--指令可以放的四个位置-->
+<zf-dr>456</zf-dr>
+<div zf-dr>123</div>
+<div class="zf-dr"></div>
+<!-- directive:zf-dr -->
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    //通过模块创建指令 我们创建的指令最好不要以ng开头
+    //而且页面上的指令如果是带中划线 要变成驼峰命名法
+    //   例如： zf-dr => zfDr
+    //创建指令用directive
+    //参数1 指令的名字  参数2 函数
+    app.directive('zfDr', function () {
+        //在函数中默认返回一个对象
+        return {
+            //在标签上增加ng-transclude 就是将我们原有标签里的内容保留放到这个标签内
+            template:'<div>Hello Angular & and zf <span ng-transclude></span></div>',
+            //指令使用的范围
+            //E element在元素标签上生效
+            //A 代表在属性上生效
+            //C 样式上生效
+            //M 在注释上生效,
+            restrict:'ECMA',
+            //不保留以前的标签
+            replace:true,
+            //transclude 内嵌 将原有标签内的内容保留
+            transclude:true,
+            //增加一个独立作用域
+            scope:true,
+            //链接  scope就是独立出来的作用域，如果没有scope：true 那么就是这个指令的上级作用域
+            //     element 当前元素
+            //     attr 是当前元素的属性
+            link: function (scope,element,attr) {
+
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

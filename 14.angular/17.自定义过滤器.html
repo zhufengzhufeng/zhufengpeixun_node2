@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="firstCtrl">
+    {{"abvdasdv" | jw:3}}
+    {{ff}}
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    //要使用什么过滤器 就在以前的过滤器后面加Filter注入进来
+    app.controller('firstCtrl', function ($scope) {
+
+    });
+    //通过模块创建filter
+    //在过滤器中也可有使用angular自带的过滤器 注入方法同controller
+    app.filter('jw', function (uppercaseFilter) {
+        //要返回一个函数 函数里有两个参数 第一个是要过滤的值，第二个参数是我们所标识的参数
+        return function (input,len) {
+//            abvdasdv AbvdasdV
+            return uppercaseFilter(input[0])+input.slice(1,input.length-1)+input[input.length-1].toUpperCase();
+            //input.slice(0,len).toUpperCase()+input.slice(len);
+        }
+    });
+
+
+
+
+</script>
+</body>
+</html>
