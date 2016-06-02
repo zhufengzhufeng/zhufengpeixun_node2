@@ -25,7 +25,7 @@
 <body>
 <div my-drag></div>
 <div my-drag class="div1"></div>
-<script src="angular.js"></script>
+<script src="../13.angular/angular.js"></script>
 <script>
     var app =angular.module('appModule',[]);
     app.directive('myDrag', function () {
@@ -49,7 +49,7 @@
                    //当鼠标抬起的时候 关闭document的事件
                  angular.element(document).on('mouseup', function () {
                      angular.element(document).off();
-                 });  
+                 });
                });
            }
        }
