@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl">
+    <input type="text" ng-model="name">
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('ctrl', function ($scope) {
+        //$watch 监控模型上的变化 有两个参数
+        /*
+        * param1 可以是模型 还可以是个函数
+        * param2 是函数 参数1 新的值 参数2 老的值
+        * */
+        /*$scope.$watch('name', function (newVal,oldVal) {
+            console.log(newVal,oldVal);
+        });*/
+        $scope.$watch(function () {
+            //返回每次scope的值
+            return $scope.name;
+        }, function (newVal,oldVal) {
+            console.log(newVal,oldVal);
+        });
+    });
+</script>
+</body>
+</html>

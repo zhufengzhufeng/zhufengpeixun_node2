@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="ctrl">
+    商品的价格{{product.price}}
+    商品的邮费{{product.free}}
+    <input type="text" ng-model="product.count">
+    总费用{{sum()+product.free}}
+</div>
+<script src="angular.js"></script>
+<script>
+    //满100包邮
+    var app = angular.module('appModule',[]);
+    app.controller('ctrl', function ($scope) {
+        $scope.product = {
+            price:10,
+            free:10,
+            count:1
+        };
+        $scope.sum = function () {
+            return $scope.product.price*$scope.product.count;
+        };
+    });
+</script>
+</body>
+</html>

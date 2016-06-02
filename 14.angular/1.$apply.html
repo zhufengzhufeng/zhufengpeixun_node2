@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="firstCtrl">
+    {{name}}
+</div>
+<script src="angular.js"></script>
+<script>
+    var app = angular.module('appModule',[]);
+    app.controller('firstCtrl', ['$scope','$interval','$timeout',function ($scope,$interval,$timeout) {
+        $scope.name = 100;
+
+        //因为setInterval不是angular规定的
+        //setInterval还是生效的只是不能双向绑定
+        /*setInterval(function () {
+            //手动的去告诉angular更新我们的视图
+            //1.第一种写法
+            // $scope.$apply();//告诉（通知）页面刷新
+            //2.第二种写法
+            $scope.$apply(function () {
+                $scope.name++;
+            });
+            console.log(1);
+        },1000);*/
+        //会自动调用$apply所有不需要我们手动刷新
+        //同setInterval
+        /* var timer = $interval(function () {
+            $scope.name++;
+            if( $scope.name>110){
+                //清除定时器
+                $interval.cancel(timer);
+            }
+        }, 1000);*/
+        //同setTimeout
+        $timeout(function () {
+            $scope.name++;
+        }, 1000);
+        //$apply的作用就是强制刷新我们的数据默认angular实现双向绑定会自动调用$apply
+    }]);
+</script>
+</body>
+</html>
